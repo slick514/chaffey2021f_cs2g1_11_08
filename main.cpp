@@ -3,6 +3,8 @@
 
 using namespace std;
 
+const int PEG_1 = 0;
+const int PEG_3 = 2;
 /**
  * Course: Chaffey College 2021-Fall CS2
  * Prof: Dr. Tracy Kocher
@@ -27,24 +29,12 @@ using namespace std;
  A disk mover with more than one disk to move must work harder. It needs another DiskMover to help it move the first
  d – 1 disks. Then next_move asks that disk mover for its next move until it is done. Then the next_move function
  issues a command to move the dth disk. Finally, it constructs another disk mover that generates the remaining moves.
-
- It helps to keep track of the state of the disk mover:
- •BEFORE_LARGEST: A helper mover moves the smaller pile to the other peg.
- •LARGEST: Move the largest disk from the source to the destination.
- •AFTER_LARGEST: The helper mover moves the smaller pile from the other peg to the target.
- •DONE: All moves are done.
  */
 int main() {
     std::cout << "Hello, 11.08!" << std::endl;
-    {
-        //todo: prompt user for values
-        int num_discs;
-        int peg_1;
-        int peg_2;
-        DiskMover mover(num_discs, peg_1, peg_2);
-        while (mover.has_more_moves()) {
-            cout << mover.next_move() << endl;
-        }
-    }
+    int num_discs = 1;
+    DiskMover mover(num_discs, PEG_1, PEG_3);
+    while(mover.has_more_moves())
+        cout << mover.next_move() << endl;
     return 0;
 }
