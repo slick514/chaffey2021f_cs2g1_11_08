@@ -8,12 +8,12 @@
 #include "disk_mover.h"
 using namespace std;
 
-DiskMover::DiskMover(const int &num_discs, const int &from_peg, const int &to_peg) {
-    disc_number = num_discs;
+DiskMover::DiskMover(const int &num_disks, const int &from_peg, const int &to_peg) {
+    disk_number = num_disks;
     from = from_peg;
     to = to_peg;
     other = NUMBER_OF_PEGS - from - to;
-    status = disc_number > 1 ? covered : can_move;
+    status = disk_number > 1 ? covered : can_move;
     cycle_helper(from, other);
 }
 
@@ -27,7 +27,7 @@ bool DiskMover::out_of_moves() const {
 
 string DiskMover::make_move_string() const{
     stringstream builder;
-    builder << disc_number << " from peg-" << from + 1 << " to peg-" << to + 1;
+    builder << "Disk-"<<disk_number << " from peg-" << from + 1 << " to peg-" << to + 1;
     return builder.str();
 }
 
@@ -40,7 +40,7 @@ string DiskMover::next_move(){
     switch(status){
         case can_move: {
             output = make_move_string();
-            move_disc();
+            move_disk();
             break;
         }
         case covered:{
@@ -60,14 +60,14 @@ string DiskMover::next_move(){
 }
 
 void DiskMover::cycle_helper(const int &from_peg, const int &to_peg) {
-    if (disc_number > 1) {
+    if (disk_number > 1) {
         DiskMover *allocated_memory = helper;
-        helper = new DiskMover(disc_number - 1, from_peg, to_peg);
+        helper = new DiskMover(disk_number - 1, from_peg, to_peg);
         delete allocated_memory;
     }
 }
 
-void DiskMover::move_disc() {
+void DiskMover::move_disk() {
     status = moved;
     cycle_helper(other, to);
 }

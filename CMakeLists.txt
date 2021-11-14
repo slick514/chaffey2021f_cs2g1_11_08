@@ -3,4 +3,4 @@ project(chaffey2021f_cs2g1_11_08)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(chaffey2021f_cs2g1_11_08 main.cpp disk_mover.cpp disk_mover.h)
+add_executable(chaffey2021f_cs2g1_11_08 main.cpp disk_mover.cpp disk_mover.h main.h)
